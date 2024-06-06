@@ -14,14 +14,17 @@ function App() {
   const fetchData = async () => {
     try {
       const response = await axios.get('https://randomuser.me/api/?results=50');
-      setUsers(response.data.results);
+      setUsers(response.data.results); //storing array of users into users[] state.
     } catch (error) {
       console.error("There was an error fetching the data!", error);
     }
   };
 
-  const filteredUsers = users.filter(user =>
-    `${user.name.first} ${user.name.last}`.toLowerCase().includes(searchTerm.toLowerCase())
+  //implementing searchFilter functionality
+  const filteredUsers = users.filter(user =>{
+      console.log(user);
+    return `${user.name.first} ${user.name.last}`.toLowerCase().includes(searchTerm.toLowerCase())
+  }
   );
 
   return (
